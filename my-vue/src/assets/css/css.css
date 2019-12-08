@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+* {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	outline: none;
+}
+body {
+	background: url(../images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.url-form {
+    font: 16px/2em Lato, serif;
+    margin: 100px auto;
+    max-width: 600px;
+}
+
+form[role=url] {
+	color: #5d5d5d;
+	background: #f2f2f2;
+	padding: 26px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+	form[role=url] img {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 35px;
+	}
+	form[role=url] input,
+	form[role=url] button {
+		font-size: 18px;
+		margin: 16px 0;
+	}
+	form[role=url] > div {
+		text-align: center;
+	}
+
+.report{
+    font: 16px/2em Lato, serif;
+    margin: 100px auto;
+    max-width: 1200px;
+    color: #5d5d5d;
+	background: #f2f2f2;
+	padding: 26px;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+.result-chart{
+    float: left;
+    width: 100%;
+}
+.chart{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.report-title{
+    font: 15px/2em Lato, serif;
+    text-align: center;
+}
+
+.title{
+    margin: 12px 0px 0px 0px;
+    text-align: center;
+    font-size: 40px;
+}
+
+
+.message{
+	font: 16px/2em Lato, serif;
+    margin: 30px auto;
+    text-align: center;
+    font-size: 14px;
+}
+.form-links {
+	text-align: center;
+	margin-top: 1em;
+	margin-bottom: 50px;
+}
+	.form-links a {
+		color: #fff;
+	}
