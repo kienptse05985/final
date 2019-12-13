@@ -251,14 +251,21 @@ table input {
 .result__chart {
     float: left;
     width: 100%;
+    margin-bottom: 50px;
+    text-align: center;
 }
 
 .chart {
-    float: left;
-    width: 50%;
-    text-align: center;
+    padding-left: 25%;
+    padding-right: 25%;
 }
 
 .result__screenshot {
     text-align: center;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 2rem;
+    font-weight: bold;
 }

@@ -12,10 +12,10 @@
     </vue-recaptcha>
     <section class="container">
       <div class="url__form" role="url">
-        <img id="header__title" src="../assets/images/title.png"/>
-        <img id="header__logo" src="../assets/images/logo.png"/>
-        <img id="header__text" src="../assets/images/text.png"/>
-
+        <a href="/"><img id="header__title" src="../assets/images/title.png"/></a>
+        <a href="/"><img id="header__logo" src="../assets/images/logo.png"/></a>
+        <!-- <img id="header__text" src="../assets/images/text.png"/> -->
+        <div class="col-md-12 text-center subtitle mt-3" >ANALYZE SUSPICIOUS URLS TO DETECT DEFACEMENT</div>
         <div v-if="processing" class="processing">
           <div class></div>
           <br>
@@ -32,7 +32,7 @@
                 <div></div>
               </div>
               <h3 class="ml-2 mt-3">Processing</h3>
-              <h2>{{data}}</h2>
+
             </div>
           </div>
         </div>

@@ -3,9 +3,10 @@
     <section class="report">
       <div class="bg-rotate"></div>
 
-      <img id="header__title" src="../assets/images/title.png"/>
-      <img id="header__logo" src="../assets/images/logo.png"/>
-      <img id="header__text" src="../assets/images/text.png"/>
+      <a href = '/'><img id="header__title" src="../assets/images/title.png"/></a>
+      <a href = '/'><img id="header__logo" src="../assets/images/logo.png"/></a>
+      <!-- <img id="header__text" src="../assets/images/text.png"/> -->
+      <div class="col-md-12 text-center subtitle mt-3" >ANALYZE SUSPICIOUS URLS TO DETECT DEFACEMENT</div>
 
 
       <!-- REPORT DEFACEMENT -->
@@ -13,12 +14,12 @@
       <div v-if="result">
 
         <div class="search__header">
-          <h2 class>Report</h2>
+          <h1 >Report</h1>
         </div>
 
         <table width="100%" border="0">
           <tr>
-            <td class="text-right" width="35%">
+            <td class="text-right" width="25%">
               <label>URL:</label>
             </td>
             <td width="80%">
@@ -39,13 +40,16 @@
           </h3>
         </div>
 
+
         <div class="result__chart">
-          <div class="chart" style="margin-left:30%">
-            <h1 class>Convolutional Neural Network</h1>
-            <vue-apex-charts v-if="CNN && CNN.series && CNN.series.length" width="500px" type="donut"
+          <h1 class>Convolutional Neural Network</h1>
+          <div class="chart">
+            <vue-apex-charts v-if="CNN && CNN.series && CNN.series.length" width="100%" type="donut"
                              :series="CNN.series" :options="chartOptions"></vue-apex-charts>
           </div>
         </div>
+
+
         <div class="result__screenshot">
           <h2>Screenshot</h2>
           <div style="outline:1px solid;margin:auto;width:900px;height:900px;">
@@ -134,7 +138,7 @@
 
         this.CNN = {
           detected: this.result.data.prediction === '1',
-          series: [1-CNNPercentage,
+          series: [(1-CNNPercentage),
             CNNPercentage],
           score: this.score
         }
@@ -142,7 +146,7 @@
         this.score = this.CNN.score
         this.$nextTick(function () {
           window.scrollBy({
-            top: 300,
+            top: 250,
             left: 0,
             behavior: 'smooth'
           })

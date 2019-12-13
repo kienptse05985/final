@@ -1,4 +1,3 @@
-import base64
 from PIL import Image
 from flask import Flask, request, jsonify
 import numpy

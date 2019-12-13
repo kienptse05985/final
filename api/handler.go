@@ -40,6 +40,7 @@ func ScanURL(c *gin.Context) {
 		c.JSON(402, ResponseBody{
 			Message: "invalid url",
 		})
+		return
 	}
 
 	isHuman, err := VerifyCaptcha(cmd.RecaptchaResponse, config.GoogleReCaptchaSecret)
@@ -49,6 +50,13 @@ func ScanURL(c *gin.Context) {
 		})
 		return
 	}
+
+	//if !checkWebsiteAlive(cmd.Url) {
+	//	c.JSON(402, ResponseBody{
+	//		Message: "url is unreachable",
+	//	})
+	//	return
+	//}
 	cmd.Id = bson.NewObjectId().Hex()
 	internalJsonPayload, _ := json.Marshal(cmd)
 	req, err := http.NewRequest("POST", fmt.Sprintf(scanUrlInternal, config.InternalAPI), bytes.NewBuffer(internalJsonPayload))
@@ -92,9 +100,20 @@ func validateURL(raw string) bool {
 	return true
 }
 
-func checkWebsiteAlive(url string) bool {
-
-}
+//func checkWebsiteAlive(url string) bool {
+//	req, _ := http.NewRequest("GET", url, nil)
+//	req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36")
+//
+//	client := &http.Client{}
+//	resp, err := client.Do(req)
+//
+//	if err != nil {
+//		fmt.Println(resp.StatusCode)
+//		return false
+//	}
+//
+//	return true
+//}
 
 const GOOGLE_VERIFY_CAPCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s"
 
