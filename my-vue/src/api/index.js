@@ -12,14 +12,7 @@ export default {
     return axios.post(`${this.defaceBaseUrl()}/api/v1/scan`, data, {headers: customHeaders}).then(response => response.data)
   },
 
-  getUrlReport(data) {
-    return axios({
-      method: 'post',
-      url: `${this.defaceBaseUrl()}/report`,
-      data: data,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(response => response.data)
+  monitor(data) {
+    return axios.post(`${this.defaceBaseUrl()}/api/v1/monitor`, data, {headers: customHeaders}).then(response => response.data)
   },
 }
