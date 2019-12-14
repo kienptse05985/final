@@ -14,7 +14,9 @@ from io import BytesIO
 options = webdriver.ChromeOptions()
 options.add_argument("--headless")
 options.add_argument("--window-size=900,900")
-
+options.add_argument("--no-sandbox")
+options.add_argument("disable-infobars")
+options.add_argument("--disable-extensions")
 app = Flask(__name__)
 
 model = keras.models.load_model('defactor_model.h5')
