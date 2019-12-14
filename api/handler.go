@@ -183,19 +183,20 @@ func MonitorJob(result AddMonitorPayload) error {
 	defacedLog := fmt.Sprintf("[%s] Detected new defacement: %s - %s\n", time.Now().Format(time.RFC3339), result.URL, result.Email)
 	SaveLog(defacedLog, "deface.log")
 	log.Println(defacedLog)
-	content := `
-		Hi, \n\n
+	content := fmt.Sprintf(`
+		Hi, <br/>
+		<br/>
+		Your site at %s may have been defaced. Please have it checked.<br/><br/>
+		Sincerely, <br>
+		Defacetor
+	`, monitorInternal.Url)
 
-		Your site at %s may have been defaced. Please have it checked.\n\n
-		Sincerely, \n
-		Defacetor\n
-	`
 	body := map[string]interface{}{
 		"from":        container.MailRepository.Username,
 		"to":          []string{result.Email},
 		"subject":     fmt.Sprintf("Defacetor Alert!"),
 		"contentType": "text/html",
-		"content":     fmt.Sprintf(content, monitorInternal.Url),
+		"content":     content,
 	}
 
 	bodyJson, err := json.Marshal(body)

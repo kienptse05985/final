@@ -12,6 +12,10 @@
     </vue-recaptcha>
     <section class="container">
       <div class="url__form" role="url">
+        <div>
+          <button class="btn btn-success btn-lg" disabled > Scan</button>
+          <button class="btn btn-primary btn-lg" @click.prevent="monitorMode">Monitor</button>
+        </div>
         <a href="/"><img id="header__title" src="../assets/images/title.png"/></a>
         <a href="/"><img id="header__logo" src="../assets/images/logo.png"/></a>
         <!-- <img id="header__text" src="../assets/images/text.png"/> -->
@@ -142,6 +146,9 @@
       },
       onExpired() {
         this.$refs.recaptcha.reset()
+      },
+      monitorMode() {
+        this.$router.push({name: 'monitor'})
       }
     }
   }

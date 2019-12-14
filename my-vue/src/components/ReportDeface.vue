@@ -1,8 +1,12 @@
 <template>
   <section class="container-fluid">
-    <section class="report">
-      <div class="bg-rotate"></div>
 
+    <section class="report">
+
+      <div style="padding:0% 40%">
+        <button class="btn btn-success btn-lg" @click.prevent="scanMode" > Scan</button>
+        <button class="btn btn-primary btn-lg" @click.prevent="monitorMode" >Monitor</button>
+      </div>
       <a href = '/'><img id="header__title" src="../assets/images/title.png"/></a>
       <a href = '/'><img id="header__logo" src="../assets/images/logo.png"/></a>
       <!-- <img id="header__text" src="../assets/images/text.png"/> -->
@@ -162,7 +166,13 @@
         tmp = this.removeFragment(tmp)
         tmp = this.removeQueryString(tmp)
         return tmp
-      }
+      },
+      monitorMode() {
+        this.$router.push({name: 'monitor'})
+      },
+      scanMode() {
+        this.$router.push({name: 'scan'})
+      },
     },
     mounted() {
       this.fetchData()
