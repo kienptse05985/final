@@ -48,14 +48,15 @@
           <button class="btn btn-lg btn-primary btn-block" @click.prevent="scanDeface">
             <vue-octicon :icon="search">Search</vue-octicon>
           </button>
+          <div class="alert alert-success" v-if="hasMessages ===2">
+            <strong>Success!</strong> {{ message}}
+          </div>
+          <div class="alert alert-danger" v-if="hasMessages === 1">
+            <strong>{{ message }}</strong>
+          </div>
         </div>
       </div>
-      <div class="alert alert-success" v-if="hasMessages ===2">
-        <strong>Success!</strong> {{ message}}
-      </div>
-      <div class="alert alert-danger" v-if="hasMessages === 1">
-        <strong>{{ message }}</strong>
-      </div>
+
     </section>
   </section>
 </template>

@@ -8,7 +8,7 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.alert import Alert
 from tensorflow import keras
 import time
-import base64
+import base64,os
 from io import BytesIO
 
 options = webdriver.ChromeOptions()
@@ -37,7 +37,8 @@ def resize(url):
         image_data = image_data.decode()
     size = (img.size[0] / 9, img.size[1] / 9)
     img.thumbnail(size)
-    img.save(url)
+    # img.save(url)
+    os.remove(url)
     # base64
     image = numpy.array(img.convert("RGB"))
     return image, image_data
@@ -59,11 +60,11 @@ def scan():
         if body is None or 'url' not in body not in body:
             return send_response({
                 'message': 'invalid request'
-            }), 401
+            }), 422
         if body['url'] == '':
             return send_response({
                 'message': 'scan url can not be empty'
-            }), 401
+            }), 422
         scan_url = body['url']
         s_id = body['id']
         s_url = './image/' + s_id + '.png'

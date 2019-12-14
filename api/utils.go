@@ -7,22 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"path/filepath"
-	"strings"
 )
-
-func GetQuery(r *http.Request, key string) (string, bool) {
-	if values, ok := GetQueryArray(r, key); ok {
-		return values[0], ok
-	}
-	return "", false
-}
-
-func GetQueryArray(r *http.Request, key string) ([]string, bool) {
-	if values, ok := r.URL.Query()[key]; ok && len(values) > 0 {
-		return values, true
-	}
-	return []string{}, false
-}
 
 func BindJSON(r *http.Request, obj interface{}) error {
 	b, err := ioutil.ReadAll(r.Body)
@@ -31,45 +16,6 @@ func BindJSON(r *http.Request, obj interface{}) error {
 	}
 
 	return json.Unmarshal(b, obj)
-}
-
-func StringInArray(str string, arr []string) bool {
-	if len(arr) == 0 {
-		return false
-	}
-
-	for _, val := range arr {
-		if strings.TrimSpace(str) == strings.TrimSpace(val) {
-			return true
-		}
-	}
-	return false
-}
-
-func Int64InArray(i int64, arr []int64) bool {
-	if len(arr) == 0 {
-		return false
-	}
-
-	for _, val := range arr {
-		if val == i {
-			return true
-		}
-	}
-	return false
-}
-
-func IntInArray(i int, arr []int) bool {
-	if len(arr) == 0 {
-		return false
-	}
-
-	for _, val := range arr {
-		if val == i {
-			return true
-		}
-	}
-	return false
 }
 
 func LoadEnv(config interface{}, prefix string, source string) error {

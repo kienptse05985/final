@@ -7,4 +7,8 @@ type Config struct {
 	Binding     string
 
 	GoogleReCaptchaSecret string
+
+	MailUserName string
+	MailPassword string
+
 }

@@ -17,6 +17,7 @@ var (
 	configPrefix string
 	configSource string
 	config       Config
+	container    *Container
 )
 
 func main() {
@@ -32,6 +33,12 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	container, err = NewContainer(config)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	container.CronDaemon.Start()
 
 	go func() {
 		fmt.Printf("Listen and serve proxy API %s\n", config.Binding)
@@ -45,6 +52,7 @@ func NewApiV1() http.Handler {
 
 	router := gin.Default()
 	router.POST("/api/v1/scan", ScanURL)
+	router.POST("/api/v1/monitor", AddMonitorSchedule)
 
 	return cors.Default().Handler(router)
 }
@@ -56,6 +64,7 @@ func Running() {
 		select {
 		case <-sig:
 			log.Println("\nSignal received, stopping")
+			container.CronDaemon.Stop()
 			return
 		}
 	}
