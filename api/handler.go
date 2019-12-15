@@ -128,6 +128,13 @@ func AddMonitorSchedule(c *gin.Context) {
 		return
 	}
 
+	if cmd.Interval <= 0{
+		c.JSON(422, ResponseBody{
+			Message: "interval must be > 0",
+		})
+		return
+	}
+
 	cmd.ID = bson.NewObjectId()
 	//ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 
